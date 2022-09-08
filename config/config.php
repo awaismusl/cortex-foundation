@@ -89,7 +89,7 @@ return [
     'datatables' => [
 
         'options' => [
-            'dom' => "<'row'<'col-sm-12'P><'col-sm-8'B><'col-sm-4'f>> <'row'r><'row'<'col-sm-12't>> <'row'<'col-sm-5'i><'col-sm-7'p>>",
+            'dom' => "<'row'<'col-sm-8'B><'col-sm-4'f>> <'row'r><'row'<'col-sm-12't>> <'row'<'col-sm-5'i><'col-sm-7'p>>",
             'select' => json_decode('{"style":"multi+shift"}'),
             'order' => [[1, 'asc']],
             'mark' => true,
@@ -123,6 +123,7 @@ return [
 
             'colvis' => true,
             'pageLength' => true,
+            'searchPanes' => true,
         ],
 
         'imports' => [
@@ -134,6 +135,11 @@ return [
             'xlt',
             'csv',
             'tsv',
+        ],
+
+        'searchpane_button_config' => [
+            'cascadePanes' => true,
+            'layout' => 'columns-4',
         ],
 
         'chunk_size' => 1000,

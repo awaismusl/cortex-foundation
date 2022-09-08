@@ -71,6 +71,7 @@ return [
     'print' => 'Print',
     'export' => 'Export',
     'showSelected' => 'Show Selected',
+    'searchPanes' => 'Search Panes',
 
     'colvis' => 'Columns',
     'pageLength' => 'Length',

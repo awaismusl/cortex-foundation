@@ -45,6 +45,18 @@
 @push('styles')
     <link href="{{ mix('css/datatables.css') }}" rel="stylesheet">
     <link href="{{ asset('css/searchPanes.css') }}" rel="stylesheet">
+    <link href="https://cdn.datatables.net/select/1.4.0/css/select.dataTables.min.css" rel="stylesheet">
+    <link href="https://cdn.datatables.net/buttons/2.2.3/css/buttons.dataTables.min.css" rel="stylesheet">
+{{--    <link href="https://cdn.datatables.net/buttons/2.2.3/css/buttons.bootstrap.min.css" rel="stylesheet">--}}
+    <style>
+        .dtsp-panesContainer.dropdown-menu {
+            display: block; !important;
+            position: initial;
+        }
+        .dt-button-collection.dtb-collection-closeable {
+            left: 0 !important;
+        }
+    </style>
 @endpush
 
 @push('vendor-scripts')

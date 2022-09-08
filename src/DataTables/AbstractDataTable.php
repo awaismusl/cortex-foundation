@@ -226,8 +226,9 @@ abstract class AbstractDataTable extends BaseDataTable
 
         $this->getColumnsFromBuilder()->each(function (Column $column) use ($datatable) {
             if (!empty($column->searchPanes)) {
-                $datatable->searchPane($column->name,
-                    $this->query()->selectRaw("$column->name as value, $column->name as label")->distinct()->get(),
+                $datatable->searchPane(
+                    $column->name,
+                    $this->query()->whereNotNull($column->name)->selectRaw("$column->name as value, $column->name as label, COUNT($column->name) as count")->groupBy($column->name)->get(),
                     function (\Illuminate\Database\Eloquent\Builder $query, array $values) use ($column) {
                         return $query->whereIn($column->name, $values);
                     }
@@ -351,6 +352,7 @@ CDATA;
             'reset' => ['extend' => 'reset', 'text' => '<i class="fa fa-undo"></i> '.trans('cortex/foundation::common.reset')],
             'reload' => ['extend' => 'reload', 'text' => '<i class="fa fa-refresh"></i> '.trans('cortex/foundation::common.reload')],
             'showSelected' => ['extend' => 'showSelected', 'text' => '<i class="fa fa-check"></i> '.trans('cortex/foundation::common.showSelected')],
+            'searchPanes' => ['extend' => 'searchPanes', 'config' => config('cortex.foundation.datatables.searchpane_button_config'), 'text' => '<i class="fa fa-search"></i> '.trans('cortex/foundation::common.searchPanes')],
 
             'print' => ['extend' => 'print', 'text' => '<i class="fa fa-print"></i> '.trans('cortex/foundation::common.print')],
             'export' => ['extend' => 'export', 'text' => '<i class="fa fa-download"></i> '.trans('cortex/foundation::common.export').'&nbsp;<span class="caret"/>', 'autoClose' => true, 'fade' => 0],
